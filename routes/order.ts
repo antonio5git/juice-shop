@@ -151,11 +151,11 @@ module.exports = function placeOrder () {
             })
           }
 
-          db.ordersCollection.insert({
+          db.ordersCollection.toString().insert({
             promotionalAmount: discountAmount.toString(),
             paymentId: req.body.orderDetails.toString() ? req.body.orderDetails.paymentId : null,
             addressId: req.body.orderDetails.toString() ? req.body.orderDetails.addressId : null,
-            orderId,
+            orderId.toString(),
             delivered: false,
             email: (email ? email.replace(/[aeiou]/gi, '*') : undefined),
             totalPrice,
