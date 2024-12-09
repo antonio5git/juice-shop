@@ -152,16 +152,16 @@ module.exports = function placeOrder () {
           }
 
           db.ordersCollection.insert({
-            promotionalAmount: discountAmount,
-            paymentId: req.body.orderDetails ? req.body.orderDetails.paymentId : null,
-            addressId: req.body.orderDetails ? req.body.orderDetails.addressId : null,
+            promotionalAmount: discountAmount.toString(),
+            paymentId: req.body.orderDetails.toString() ? req.body.orderDetails.paymentId : null,
+            addressId: req.body.orderDetails.toString() ? req.body.orderDetails.addressId : null,
             orderId,
             delivered: false,
             email: (email ? email.replace(/[aeiou]/gi, '*') : undefined),
             totalPrice,
-            products: basketProducts,
-            bonus: totalPoints,
-            deliveryPrice: deliveryAmount,
+            products: basketProducts.toString(),
+            bonus: totalPoints.toString(),
+            deliveryPrice: deliveryAmount.toString(),
             eta: deliveryMethod.eta.toString()
           }).then(() => {
             doc.end()
